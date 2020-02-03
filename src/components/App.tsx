@@ -6,13 +6,7 @@ import 'react-tabs/style/react-tabs.css';
 import SavedPins from './SavedPins';
 
 export default class App extends React.Component<any,any> {
-  constructor(props: any, context: any) {
-      super(props,context);
-      this.state={
-          generateTab: true
-      };
-  }
-
+  
   render(){
       return(
           <div >

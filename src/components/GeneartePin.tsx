@@ -18,7 +18,7 @@ interface IState {
 
    
 
-    private generatePin = ()=>{
+    public generatePin = ()=>{
         var randomArr=[];
         
         var arr_names:number[] = new Array(5)  
@@ -40,8 +40,8 @@ interface IState {
         var isStringAvail=true;
         var isRepeat = false;
         while (consecutiveStatus) {
-             number=Math.floor(Math.random()*9999)+10000;
-             consecutiveStatus= this.validConsecutive(number);
+             number = Math.floor(1000 + Math.random() * 9000);
+            consecutiveStatus= this.validConsecutive(number);
              ascStatus=this.validAscending(number);
              isStringAvail=this.state.randomArray.includes(number.toString());
                 var x= Object.values(this.props.savedPins)
@@ -88,7 +88,7 @@ interface IState {
            :<td style={{paddingLeft:"25rem",color:"green"}}>{message}</td>}
             
             </tr></tbody></table>
-           <input className="generate" type="button" value="Generate" onClick={this.generatePin} />
+           <button className="generate"  onClick={this.generatePin} >Generate</button>
            <input className="generate save" type="button" value="Save"  onClick={this.savePin} />
         </div>
         )

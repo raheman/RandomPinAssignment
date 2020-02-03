@@ -7,7 +7,6 @@ class SavedPins extends React.Component<any,any> {
 
 
     render(){
-        console.log( this.props.savedPins);
         var savepin=Object.keys(this.props.savedPins);
         return (
       
@@ -27,8 +26,8 @@ class SavedPins extends React.Component<any,any> {
                             return <td key={index1}><input type="text" name="generatePin"  readOnly value={randomPinValue} /></td>
                         })
                          }<td>
-                             <input className="generate save" type="button" value="Delete" style={{backgroundColor:"red"}}  
-                                onClick={() => this.props.deletePin(savepin[index])} />
+                             <button className="generate save" type="button"  style={{backgroundColor:"red"}}  
+                                onClick={() => this.props.deletePin(savepin[index])} >Delete</button>
                          </td></tr>
                         }):"Sorry Data Not Available."
                     }
