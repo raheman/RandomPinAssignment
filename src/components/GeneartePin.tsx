@@ -33,19 +33,23 @@ interface IState {
     
 
     public generateNumber=():string=>{
-      
+        var randomno="";
         var consecutiveStatus=true;
         var ascStatus=true;
         var number=0;
         var isStringAvail=true;
         var isRepeat = false;
         while (consecutiveStatus) {
-             number = Math.floor(1000 + Math.random() * 9000);
-            consecutiveStatus= this.validConsecutive(number);
-             ascStatus=this.validAscending(number);
-             isStringAvail=this.state.randomArray.includes(number.toString());
+             number = Math.floor(100 + Math.random() * 9000);
+              randomno=number.toString();
+            if(number<1000){
+                randomno=this.validateLessThanHundered(number);
+            }
+            consecutiveStatus= this.validConsecutive(randomno);
+             ascStatus=this.validAscending(randomno);
+             isStringAvail=this.state.randomArray.includes(randomno);
                 var x= Object.values(this.props.savedPins)
-                isRepeat = (x.flat()).includes(number.toString())
+                isRepeat = (x.flat()).includes(randomno)
                 if(consecutiveStatus||ascStatus||isStringAvail|| isRepeat){
                     continue;
                 }
@@ -53,14 +57,19 @@ interface IState {
                     break;
                 }
           }
-        return number.toString();
+        return randomno;
     }
 
-    public validConsecutive=(randomNo:number)=>{
-        return  /([0-9])\1+/.test(randomNo.toString());
+   public validateLessThanHundered(randomNo:number){
+       let finalno="0"+randomNo;
+    return finalno;
+   }
+
+    public validConsecutive=(randomNo:string)=>{
+        return  /([0-9])\1+/.test(randomNo);
     }
-    public validAscending=(randomNo:number)=>{
-        return  /(012|123|234|345|456|567|678|789|210|321|432|543|654|765|876|987)+/ig.test(randomNo.toString());
+    public validAscending=(randomNo:string)=>{
+        return  /(012|123|234|345|456|567|678|789|210|321|432|543|654|765|876|987)+/ig.test(randomNo);
     }
 
     public savePin=()=>{
